@@ -71,7 +71,7 @@ GEM
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
-    graphql (1.9.15)
+    graphql (1.9.17)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
@@ -177,7 +177,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   graphiql-rails (= 1.7.0)
-  graphql (= 1.9.15)
+  graphql (= 1.9.17)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   puma (~> 4.1)
