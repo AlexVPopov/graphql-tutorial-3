@@ -4,7 +4,7 @@ module Mutations
     # often we will need input types for specific mutation
     # in those cases we can define those input types in the mutation class itself
     class AuthProviderSignupData < Types::BaseInputObject
-      argument :email, Types::AuthProviderEmailInput, required: false
+      argument :credentials, Types::AuthProviderCredentialsInput, required: false
     end
 
     argument :name, String, required: true
@@ -15,8 +15,8 @@ module Mutations
     def resolve(name: nil, auth_provider: nil)
       User.create!(
         name: name,
-        email: auth_provider&.[](:email)&.[](:email),
-        password: auth_provider&.[](:email)&.[](:password)
+        email: auth_provider&.[](:credentials)&.[](:email),
+        password: auth_provider&.[](:credentials)&.[](:password)
       )
     end
   end

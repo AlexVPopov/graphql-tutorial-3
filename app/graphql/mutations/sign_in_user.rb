@@ -2,20 +2,20 @@ module Mutations
   class SignInUser < BaseMutation
     null true
 
-    argument :email, Types::AuthProviderEmailInput, required: false
+    argument :credentials, Types::AuthProviderCredentialsInput, required: false
 
     field :token, String, null: true
     field :user, Types::UserType, null: true
 
-    def resolve(email: nil)
+    def resolve(credentials: nil)
       # basic validation
-      return unless email
+      return unless credentials
 
-      user = User.find_by email: email[:email]
+      user = User.find_by email: credentials[:email]
 
       # ensures we have the correct user
       return unless user
-      return unless user.authenticate(email[:password])
+      return unless user.authenticate(credentials[:password])
 
       # use Ruby on Rails - ActiveSupport::MessageEncryptor, to build a token
       crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))

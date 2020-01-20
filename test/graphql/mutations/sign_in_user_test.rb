@@ -17,7 +17,7 @@ class Mutations::SignInUserTest < ActiveSupport::TestCase
     user = create_user
 
     result = perform(
-      email: {
+      credentials: {
         email: user.email,
         password: user.password
       }
@@ -33,11 +33,11 @@ class Mutations::SignInUserTest < ActiveSupport::TestCase
 
   test 'failure because wrong email' do
     create_user
-    assert_nil perform(email: { email: 'wrong' })
+    assert_nil perform(credentials: { email: 'wrong' })
   end
 
   test 'failure because wrong password' do
     user = create_user
-    assert_nil perform(email: { email: user.email, password: 'wrong' })
+    assert_nil perform(credentials: { email: user.email, password: 'wrong' })
   end
 end
